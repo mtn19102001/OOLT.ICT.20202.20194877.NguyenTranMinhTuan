@@ -1,0 +1,7 @@
+After the call of swap(jungleDVD, cinderellaDVD), the title 
+of these two objects still remain because the swap method is 
+essentially changing the values in two pieces of memory. 
+Anything referencing those bits of memory will now get different values.
+In Java there aren't really pointers, so this won't work.
+Instead, we change the stuff inside the object by the changeTitle method,
+which set the new title for the dvd.

@@ -22,6 +22,9 @@ public class DigitalVideoDisc {
 	public float getCost() {
 		return cost;
 	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	//construction method
 	//QUESTION: Yes.Java allows to do that.
 	public DigitalVideoDisc(String title) {

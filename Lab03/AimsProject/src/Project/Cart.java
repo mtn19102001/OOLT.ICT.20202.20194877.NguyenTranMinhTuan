@@ -1,5 +1,6 @@
 package Project;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 10;
@@ -25,6 +26,22 @@ public class Cart {
 		}
 	}
 	
+	void addDigitalVideoDisc(DigitalVideoDisc [] dvdList){
+		if(this.getQtyOrdered() < MAX_NUMBERS_ORDERED) {
+			if(this.itemsOrdered.addAll(Arrays.asList(dvdList)) == true)
+				System.out.println(dvdList.getClass().toString() + " has been added");
+			this.setQtyOrdered(this.itemsOrdered.size());
+		}
+		else {
+			System.out.println("The cart is almost full");
+		}
+	}
+	void addDigtalVideoDisc(DigitalVideoDisc ...disc) {
+		
+	}
+	void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+		
+	}
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc){
 		if(this.getQtyOrdered() == 0) {
 			System.out.println("Cannot remove any disc");
