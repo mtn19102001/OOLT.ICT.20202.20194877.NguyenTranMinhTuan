@@ -1,5 +1,8 @@
-package lab04;
+package lab04.hust.soict.globalict.test.cart;
 import java.util.Scanner;
+
+import lab04.hust.soict.globalict.aims.cart.Cart;
+import lab04.hust.soict.globalict.aims.disc.DigitalVideoDisc;
 public class CartTest {
 
 	public static void main(String[] args) {

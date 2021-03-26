@@ -1,4 +1,6 @@
-package lab04;
+package lab04.hust.soict.globalict.test.disc;
+
+import lab04.hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 public class TestPassingParameter {
 	public static void main(String[] args) {

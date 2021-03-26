@@ -1,4 +1,4 @@
-package lab04;
+package lab04.hust.soict.globalict.aims.disc;
 import java.time.LocalDate;
 import java.time.Month;
 

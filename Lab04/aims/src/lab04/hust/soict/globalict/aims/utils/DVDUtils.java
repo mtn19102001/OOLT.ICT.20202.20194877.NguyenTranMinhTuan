@@ -1,6 +1,8 @@
-package lab04;
+package lab04.hust.soict.globalict.aims.utils;
 import java.util.Arrays;
 import java.util.Comparator;
+
+import lab04.hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 public class DVDUtils {
 	public static int compareByCost(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {

@@ -1,7 +1,10 @@
-package lab04;
+package lab04.hust.soict.globalict.aims;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
+
+import lab04.hust.soict.globalict.aims.cart.Cart;
+import lab04.hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 //provide main method to interact
 public class Aims {
