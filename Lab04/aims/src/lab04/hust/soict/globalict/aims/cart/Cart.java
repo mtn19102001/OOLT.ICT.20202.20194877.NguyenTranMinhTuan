@@ -1,9 +1,12 @@
-package lab04;
+package lab04.hust.soict.globalict.aims.cart;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Collections;
 import java.util.Arrays;
 import java.util.List;
+
+import lab04.hust.soict.globalict.aims.disc.DigitalVideoDisc;
+import lab04.hust.soict.globalict.aims.utils.DVDUtils;
 
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 10;
@@ -29,7 +32,7 @@ public class Cart {
 	}
 	
 	//error 
-	void addDigitalVideoDisc(DigitalVideoDisc [] disc){
+	public void addDigitalVideoDisc(DigitalVideoDisc [] disc){
 		List<DigitalVideoDisc> dvds = Arrays.asList(disc);
 			if(this.getQtyOrdered() < MAX_NUMBERS_ORDERED) {
 				if(this.itemsOrdered.addAll(dvds) == true)
@@ -49,7 +52,7 @@ public class Cart {
 				System.out.println("The cart is almost full");
 			}
 	}
-	void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+	public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
 		if(this.getQtyOrdered() < MAX_NUMBERS_ORDERED) {
 			List<DigitalVideoDisc> dvds = Arrays.asList(dvd1, dvd2);
 			if(this.itemsOrdered.addAll(dvds) == true) {

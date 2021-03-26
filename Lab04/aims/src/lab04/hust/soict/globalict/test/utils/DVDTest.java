@@ -1,4 +1,6 @@
-package lab04;
+package lab04.hust.soict.globalict.test.utils;
+import lab04.hust.soict.globalict.aims.disc.DigitalVideoDisc;
+import lab04.hust.soict.globalict.aims.utils.DVDUtils;
 
 public class DVDTest {
 
