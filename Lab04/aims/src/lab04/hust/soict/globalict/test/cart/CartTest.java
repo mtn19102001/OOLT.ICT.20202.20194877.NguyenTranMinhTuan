@@ -12,16 +12,17 @@ public class CartTest {
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("DDDD", "dddd", "dddd", 1, 7.1f);
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("EEEE", "eeee", "eeee", 1, 3.3f);
 		//sort by cost
+		Cart anOrder = new Cart();
 		Scanner input = new Scanner(System.in);
 		System.out.println("Sort by cost(descending order):");
-		Cart.sortByCost(new DigitalVideoDisc[] {dvd1, dvd3, dvd4, dvd2, dvd5});
+		anOrder.sortByCost();
 		//sort by title
 		System.out.println("Sort by Title(descending order):");
-		Cart.sortByTitle(new DigitalVideoDisc[] {dvd1, dvd3, dvd4, dvd2, dvd5});
+		anOrder.sortByTitle();
 		//seachById
 		System.out.println("Enter the id number you want to search: ");
 		int id = input.nextInt();
-		Cart.searchByID(id, new DigitalVideoDisc[] {dvd1, dvd2, dvd3, dvd4, dvd5});
+		anOrder.searchByID(id);
 		//displayCart
 		Cart.displayCart(new DigitalVideoDisc[] {dvd1, dvd2, dvd3, dvd4, dvd5});
 		input.close();

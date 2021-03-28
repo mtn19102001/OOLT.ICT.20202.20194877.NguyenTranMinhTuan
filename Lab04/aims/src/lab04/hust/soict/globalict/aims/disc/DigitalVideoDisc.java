@@ -13,7 +13,7 @@ public class DigitalVideoDisc {
 	private LocalDate dateAdded;
 	// below is the getter
 	public int getId() {
-		return this.id;
+		return id;
 	}
 	public String getTitle() {
 		return title;
@@ -49,6 +49,10 @@ public class DigitalVideoDisc {
 		this.id = ++nbDigitalVideoDisc;
 		this.dateAdded = LocalDate.now();
 	}
+	public DigitalVideoDisc(int id) {
+		super();
+		this.id = id;
+	}
 	public DigitalVideoDisc(String title, String category, String director, float cost) {
 		super();
 		this.title = title;
@@ -70,5 +74,17 @@ public class DigitalVideoDisc {
 	}
 	public String getDetail() {
 		return id + ". " + "DVD - " + title + " - " + category + " - " + director + " - " + length + ": " + cost + " $";
+	}
+	public boolean search(String title) {
+		String []sub2 = title.split(" ");
+		String []sub1 = this.title.split(" ");
+		for(int i = 0; i < sub1.length; i++) {
+			for(int j = 0; j < sub2.length; j++) {
+				if(sub1[i].equalsIgnoreCase(sub2[j])) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

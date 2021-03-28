@@ -1,3 +1,5 @@
+package displaydays.src;
+
 import java.util.Scanner;
 public class DisplayNoDays {
 	public static void main(String[] args) {
@@ -11,7 +13,12 @@ public class DisplayNoDays {
 			System.out.println("Enter a correct year! ");
 			input.next();
 		}
-		long year = input.nextLong();
+		int yearTest = input.nextInt();
+		if(yearTest < 0) {
+			System.out.println("Enter a correct year! ");
+			input.next();
+		}
+		int year = input.nextInt();
 		input.nextLine();
 		
 		System.out.println("Enter a month("

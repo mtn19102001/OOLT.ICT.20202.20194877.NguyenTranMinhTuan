@@ -1,3 +1,5 @@
+package addmatrices.src;
+
 import java.util.Scanner;
 
 public class AddTwoMatrices {
