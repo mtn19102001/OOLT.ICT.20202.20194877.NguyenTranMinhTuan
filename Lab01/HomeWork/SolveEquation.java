@@ -1,3 +1,4 @@
+package HomeWork;
 import java.util.Scanner;
 public class SolveEquation {
 	public static void main(String[] args) {
@@ -77,5 +78,6 @@ public class SolveEquation {
 			}
 			break;
 		}
+		input.close();
 	}
 }

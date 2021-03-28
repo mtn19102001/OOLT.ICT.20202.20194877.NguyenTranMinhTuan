@@ -1,3 +1,5 @@
+package sortarray.src;
+
 import java.util.Arrays;
 import java.util.Scanner;
 public class SortArray
@@ -22,6 +24,6 @@ public class SortArray
         System.out.println("Sum: "+sum);
         average = (float)sum / n;
         System.out.println("Average: "+average);
-        
+        s.close();
     }
 }

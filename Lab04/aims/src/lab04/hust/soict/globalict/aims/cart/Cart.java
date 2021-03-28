@@ -9,7 +9,7 @@ import lab04.hust.soict.globalict.aims.disc.DigitalVideoDisc;
 import lab04.hust.soict.globalict.aims.utils.DVDUtils;
 
 public class Cart {
-	public static final int MAX_NUMBERS_ORDERED = 10;
+	public static final int MAX_NUMBERS_ORDERED = 20;
 	private ArrayList<DigitalVideoDisc> itemsOrdered = new ArrayList<DigitalVideoDisc>();
 	public int qtyOrdered;
 	public static float totalCost;
@@ -19,7 +19,6 @@ public class Cart {
 	private void setQtyOrdered(int qtyOrdered) {
 		this.qtyOrdered = qtyOrdered;
 	}
-
 	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
 		if(this.getQtyOrdered() < MAX_NUMBERS_ORDERED) {
 			if(this.itemsOrdered.add(disc) == true)
@@ -99,52 +98,40 @@ public class Cart {
 			}
 		}
 	}
-	
-	public static void sortByTitle(DigitalVideoDisc ...disc) {
-		ArrayList<DigitalVideoDisc> list = new ArrayList<DigitalVideoDisc>();
-		List<DigitalVideoDisc> dvds = Arrays.asList(disc);
-		list.addAll(dvds);
-		Collections.sort(list, new Comparator<DigitalVideoDisc>() 
-		{
-			//ascending sort
-			public int compare(DigitalVideoDisc disc1,DigitalVideoDisc disc2) 
-			{
-				return String.valueOf(disc2.getTitle()).compareTo(disc1.getTitle());
+	// same title -> higher cost displayed first
+	public void sortByTitle() {
+		Comparator<DigitalVideoDisc> DVDSort = new Comparator<DigitalVideoDisc>() {
+			@Override
+			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
+				int compareByTitle = DVDUtils.compareByTitle(disc1, disc2);
+				if(compareByTitle == 0) {
+					int compareByCost = DVDUtils.compareByCost(disc1, disc2);
+					return -compareByCost;
+				}
+				return compareByTitle;
 			}
-		});
-		for(int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getDetail());
+		};
+		Collections.sort(itemsOrdered, DVDSort);
+		for(int i = 0; i < itemsOrdered.size(); i++) {
+			System.out.println(itemsOrdered.get(i).getDetail());
 		}
 	}
-	public static void sortByCost(DigitalVideoDisc ...disc) {
-		ArrayList<DigitalVideoDisc> list = new ArrayList<DigitalVideoDisc>();
-		List<DigitalVideoDisc> dvds = Arrays.asList(disc);
-		list.addAll(dvds);
-		Collections.sort(list, new Comparator<DigitalVideoDisc>() 
-		{
-			//ascending sort
-			public int compare(DigitalVideoDisc disc2,DigitalVideoDisc disc1) 
-			{
-				return Float.valueOf(disc1.getCost()).compareTo(disc2.getCost());
+	// same cost -> increasing title
+	public void sortByCost() {
+		Comparator<DigitalVideoDisc> DVDSort = new Comparator<DigitalVideoDisc>() {
+			@Override
+			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
+				int compareByCost = DVDUtils.compareByCost(disc1, disc2);
+				if(compareByCost == 0) {
+					int compareByTitle = DVDUtils.compareByTitle(disc1, disc2);
+					return compareByTitle;
+				}
+				return -compareByCost;
 			}
-		});
-		for(int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getDetail());
-		}
-	}
-	public static void searchByID(int id, DigitalVideoDisc ...disc) {
-		int found =0;
-		ArrayList<DigitalVideoDisc> list = new ArrayList<DigitalVideoDisc>();
-		List<DigitalVideoDisc> dvds = Arrays.asList(disc);
-		list.addAll(dvds);
-		for(int i = 0; i < list.size(); i++) {
-			if(list.get(i).getId() == id) {
-				System.out.println(list.get(i).getDetail());
-				found = 1;
-			}
-		}
-		if(found == 0) {
-			System.out.println("no match is found");
+		};
+		Collections.sort(itemsOrdered, DVDSort);
+		for(int i = 0; i < itemsOrdered.size(); i++) {
+			System.out.println(itemsOrdered.get(i).getDetail());
 		}
 	}
 	public static void displayCart(DigitalVideoDisc ...disc) {
@@ -155,7 +142,7 @@ public class Cart {
 			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
 				int compareByTitle = DVDUtils.compareByTitle(disc1, disc2);
 				if(compareByTitle == 0) {
-					int compareByCost = DVDUtils.compareByTitle(disc1, disc2);
+					int compareByCost = DVDUtils.compareByCost(disc1, disc2);
 					if(compareByCost == 0) {
 						return disc2.getLength() - disc1.getLength();
 					}
@@ -175,5 +162,35 @@ public class Cart {
 		}
 		System.out.println("Total cost: " + totalCost + "$");
 		System.out.println("********************************************");
+	}
+	public void searchByID(int id) {
+		int found = 0;
+		for(int i = 0; i < itemsOrdered.size(); i++) {
+			if(itemsOrdered.get(i).getId() == id) {
+				System.out.println(itemsOrdered.get(i).getDetail());
+				found = 1;
+			}
+		}
+		if(found == 0) {
+			System.out.println("no match is found");
+		}
+	}
+	public void searchByTitle(String title) {
+		int found = 0;
+		for(int i = 0; i < itemsOrdered.size(); i++) {
+			if(itemsOrdered.get(i).search(title) == true) {
+				found ++;
+				System.out.println("Finding " + "disc containing " + "'" + title + "'" + "...");
+				System.out.println("Result: ");
+				System.out.println(itemsOrdered.get(i).getDetail());
+			}
+		}
+		if(found == 0) {
+			System.out.println("no match is found");
+		}
+	}
+	public void clear() {
+		itemsOrdered.clear();
+		qtyOrdered = 0;
 	}
 }
