@@ -1,3 +1,4 @@
+package HomeWork;
 import java.util.Scanner;
 public class Calculate{
 	public static void main(String[] args) {
@@ -30,5 +31,6 @@ public class Calculate{
 		System.out.println(quotient);
 		System.out.print("Remainder is: ");
 		System.out.println(remainder);
+		input.close();
 	}
 }

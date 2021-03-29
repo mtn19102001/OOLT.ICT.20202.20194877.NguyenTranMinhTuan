@@ -1,3 +1,4 @@
+package star;
 import java.util.Scanner;
 public class DisplayTriangle {
 	public static void main(String[] args) {
@@ -14,5 +15,6 @@ public class DisplayTriangle {
 			}
 			System.out.print("\n");
 		}	
+		input.close();
 	}
 }
