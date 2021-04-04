@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="lab04.hust.soict.globalict.aims.utils.DVDUtils.DVDUtils"/>
+    <fullyQualifiedTypeName name="lab04.hust.soict.globalict.aims.cart.Cart.Cart"/>
+    <fullyQualifiedTypeName name="lab04.hust.soict.globalict.aims.disc.DigitalVideoDisc.DigitalVideoDisc"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="lab04.hust.soict.globalict.aims.disc.DigitalVideoDisc"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="lab04.hust.soict.globalict.aims.cart.Cart"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="java.nio.file.Paths"/>
+    <fullyQualifiedTypeName name="java.nio.file.Files"/>
+</qualifiedTypeNameHistroy>

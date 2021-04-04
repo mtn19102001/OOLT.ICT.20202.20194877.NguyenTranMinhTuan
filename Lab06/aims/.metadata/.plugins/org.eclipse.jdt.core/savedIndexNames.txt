@@ -1,0 +1,5 @@
+INDEX VERSION 1.131+C:\Users\HP\Desktop\OOP\OOLT.ICT.20202.20194877.NguyenTranMinhTuan\Lab04\aims\.metadata\.plugins\org.eclipse.jdt.core
+3546173663.index
+1067094681.index
+2692201997.index
+2730459363.index

@@ -1,0 +1,58 @@
+package lab04.hust.soict.globalict.aims.media;
+import java.time.LocalDate;
+import java.time.Month;
+
+public class DigitalVideoDisc extends Media{
+	private String director;
+	private int length;
+	private static int nbDigitalVideoDisc = 0;
+	private LocalDate dateAdded;
+	public String getDirector() {
+		return director;
+	}
+	public int getLength() {
+		return length;
+	}
+	public void setTitle(String title) {
+		Media.title = title;
+	}
+	//construction method
+	//QUESTION: Yes.Java allows to do that.
+	public DigitalVideoDisc(String title) {
+		super();
+		this.title = title;
+		this.id = ++nbDigitalVideoDisc;
+		this.dateAdded = LocalDate.now();
+	}
+	public DigitalVideoDisc(String title, String category, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+		this.id = ++nbDigitalVideoDisc;
+		this.dateAdded = LocalDate.now();
+	}
+	public DigitalVideoDisc(int id) {
+		super();
+		this.id = id;
+	}
+	public DigitalVideoDisc(String title, String category, String director, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.director = director;
+		this.cost = cost;
+		this.id = ++nbDigitalVideoDisc;
+		this.dateAdded = LocalDate.now();
+	}
+	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.director = director;
+		this.length = length;
+		this.cost = cost;
+		this.id = ++nbDigitalVideoDisc;
+		this.dateAdded = LocalDate.now();
+	}
+}

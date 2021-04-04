@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="lab04.hust.soict.globalict.aims.media.Media"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="lab04.hust.soict.globalict.aims.media.Book"/>
+    <fullyQualifiedTypeName name="lab04.hust.soict.globalict.aims.Store"/>
+    <fullyQualifiedTypeName name="lab04.hust.soict.globalict.aims.media.DigitalVideoDisc"/>
+</qualifiedTypeNameHistroy>

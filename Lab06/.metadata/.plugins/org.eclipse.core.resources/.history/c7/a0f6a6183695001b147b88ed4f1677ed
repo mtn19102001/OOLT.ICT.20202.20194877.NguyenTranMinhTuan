@@ -1,0 +1,25 @@
+package lab04.hust.soict.globalict.aims.media;
+
+public class Media {
+	protected String title;
+	protected String category;
+	protected float cost;
+	private int id;
+	private static int nb = 0;
+	public int getId() {
+		this.id ++;
+		return id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	protected String getCategory() {
+		return category;
+	}
+	public float getCost() {
+		return cost;
+	}
+	public String getDetail() {
+		return id + ". " + "item - " + title + " - " + category + cost + " $";
+	}
+}

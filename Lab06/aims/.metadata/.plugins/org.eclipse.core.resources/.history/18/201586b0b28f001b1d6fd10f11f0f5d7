@@ -1,0 +1,9 @@
+package hust.soict.globalict.garbage;
+
+public class ConcatenationInLoops {
+	String filename = "test.exe"; // test.exe is the name to an executable file
+	byte[] inputBytes = { 0 };
+	long startTime, endTime;
+	
+	inputBytes = Files.readAllBytes(Paths.get(filename));
+}

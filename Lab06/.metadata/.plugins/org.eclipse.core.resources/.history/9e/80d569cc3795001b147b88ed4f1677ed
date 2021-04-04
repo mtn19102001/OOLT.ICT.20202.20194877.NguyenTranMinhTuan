@@ -1,0 +1,64 @@
+package lab04.hust.soict.globalict.aims.Book;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Book extends Book{
+	private List<String> authors = new ArrayList<String>();
+	public void addAuthors(String authorName) {
+		if(authors.contains(authorName) == false) {
+			authors.add(authorName);
+		}else {
+			System.out.println("The " + authorName + " already existed in the list");
+		}
+	}
+	public void removeAuthors(String authorName) {
+		if(authors.contains(authorName) == true) {
+			authors.remove(authorName);
+		}else {
+			System.out.println("The " + authorName + " does not exist in the list");
+		}
+	}
+	public Book(String title) {
+		super();
+		this.title = title;
+		this.id = ++nb;
+		this.dateAdded = LocalDate.now();
+	}
+	public Book(String title, String category, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+		this.id = ++nb;
+		this.dateAdded = LocalDate.now();
+	}
+	public Book(int id) {
+		super();
+		this.id = id;
+	}
+	public Book(String title, String category, String director, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.director = director;
+		this.cost = cost;
+		this.id = ++nb;
+		this.dateAdded = LocalDate.now();
+	}
+	public Book(String title, String category, String director, int length, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.director = director;
+		this.length = length;
+		this.cost = cost;
+		this.id = ++nb;
+		this.dateAdded = LocalDate.now();
+	}
+	public String getDetail() {
+		return id + ". " + "title: " + title + " - " + "category: " + category + " - " + "director: " + director + " - " +
+	"length: " + length + " - " + "cost: " + cost + " $";
+	}
+}
