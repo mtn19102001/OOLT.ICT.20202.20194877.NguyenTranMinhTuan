@@ -2,29 +2,32 @@ package lab04.hust.soict.globalict.aims;
 
 import java.util.ArrayList;
 
+import lab04.hust.soict.globalict.aims.media.CompactDisc;
+import lab04.hust.soict.globalict.aims.media.DigitalVideoDisc;
 import lab04.hust.soict.globalict.aims.media.Media;
 
 public class Store {
-	public ArrayList<Media> storelist = new ArrayList<Media>();
+	public ArrayList<Media> itemsInStore = new ArrayList<Media>();
 	public void additem(Media item) {
-		if(this.storelist.add(item) == true) {
-			System.out.println(item.getTitle().toString() + " has been added to the store");
+		if(this.itemsInStore.add(item) == true) {
+			System.out.println(item.getId() + ". " + item.getTitle().toString() + " has been added to the store");
 		}else {
 			System.out.println("Cannot add " + item.getTitle() + " to the store");
 		}
 	}
 	public void removeitem(Media item) {
-		if(this.storelist.remove(item) == true) {
-			System.out.println(item.getTitle().toString() + " has been removed from the store");
+		if(this.itemsInStore.remove(item) == true) {
+			System.out.println(item.getId() + item.getTitle().toString() + " has been removed from the store");
 		}else {
 			System.out.println("Cannot remove " + item.getTitle() + " from the store");
 		}
 	}
 	public Media searchByID(int id) {
-		for(int i = 0; i < this.storelist.size(); i++) {
-			if(this.storelist.get(i).getId() == id) {
-				System.out.println("item information: " + this.storelist.get(i).getDetail());
-				return storelist.get(i);
+		for(int i = 0; i < this.itemsInStore.size(); i++) {
+			if(this.itemsInStore.get(i).getId() == id) {
+				System.out.println("item information: ");
+				itemsInStore.get(i).seeMediaDetail();
+				return itemsInStore.get(i);
 			}
 		}
 		System.out.println("no match found!");
@@ -32,10 +35,21 @@ public class Store {
 	}
 	public void removeitem(int id) {
 		Media item = searchByID(id);
-		if(this.storelist.remove(item) == true) {
+		if(this.itemsInStore.remove(item) == true) {
 			System.out.println(item.getTitle().toString() + " has been removed from the store");
 		}else {
 			System.out.println("Cannot remove " + item.getTitle() + " from the store");
+		}
+	}
+	public void play(int i) {
+		if(itemsInStore.get(i) instanceof DigitalVideoDisc) {
+			DigitalVideoDisc dvd = (DigitalVideoDisc) itemsInStore.get(i);
+			dvd.play();
+		}else if (itemsInStore.get(i) instanceof CompactDisc) {
+			CompactDisc cd = (CompactDisc)itemsInStore.get(i);
+			cd.play();
+		}else {
+			System.out.println("Fail to play book!");
 		}
 	}
 	public static void showMenu() {
@@ -66,15 +80,15 @@ public class Store {
 	public static void storeMenu() {
 		System.out.println("Options: ");
 		System.out.println("---------------------------------");
-		System.out.println("1. See a item's details");
-		System.out.println("2. Add a item to cart");
+		System.out.println("1. See an item's details");
+		System.out.println("2. Add an item to cart");
 		System.out.println("3. See current cart");
 		System.out.println("0. Exit");
 		System.out.println("---------------------------------");
 		System.out.println("Please choose a number: 0-1-2-3");
 	}
-	//if 1. See a item's details then ask user if they wish to add that
+	//if 1. See an item's details then ask user if they wish to add that
 			//item to the current cart
-	//if 2. Add a item to cart will ask user to enter the id of that item
+	//if 2. Add an item to cart will ask user to enter the id of that item
 			//they see on the screen then add the item to the cart
 }

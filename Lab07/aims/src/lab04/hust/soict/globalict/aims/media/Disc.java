@@ -12,36 +12,32 @@ public class Disc extends Media{
 		return length;
 	}
 	public Disc(String title) {
-		super();
+		super(title);
 		this.title = title;
-		this.id = ++nb;
+		this.id = nb;
+		this.dateAdded = LocalDate.now();
 	}
 	public Disc(String title, String category, float cost) {
-		super();
-		this.title = title;
-		this.category = category;
-		this.cost = cost;
-		this.id = ++nb;
+		super(title, category, cost);
+		this.id = nb;
+		this.dateAdded = LocalDate.now();
 	}
 	public Disc(int id) {
-		super();
-		this.id = id;
+		super(id);
+		this.dateAdded = LocalDate.now();
 	}
 	public Disc(String title, String category, String director, float cost) {
-		super();
-		this.title = title;
-		this.category = category;
-		this.director = director;
-		this.cost = cost;
-		this.id = ++nb;
+		super(title, category, director, cost);
+		this.id = nb;
+		this.dateAdded = LocalDate.now();
 	}
 	public Disc(String title, String category, String director, int length, float cost) {
-		super();
-		this.title = title;
-		this.category = category;
-		this.director = director;
-		this.length = length;
-		this.cost = cost;
-		this.id = ++nb;
+		super(title, category, director, length, cost);
+		this.id = nb;
+		this.dateAdded = LocalDate.now();
+	}
+	public String getDetail() {
+		return id + ". " + "title: " + title + " - " + "category: " + category + " - " + "director: " + director + " - " +
+	"length: " + length + " - " + "cost: " + cost + " $";
 	}
 }

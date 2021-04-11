@@ -1,13 +1,15 @@
 package lab04.hust.soict.globalict.aims.media;
-
-import lab04.hust.soict.globalict.aims.Store;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public abstract class Media {
+	private ArrayList<Media> media= new ArrayList<Media>();
 	protected String title;
 	protected String category;
 	protected float cost;
 	protected int id;
 	protected static int nb = 0;
+	protected LocalDate dateAdded;
 	public int getId() {
 		return id;
 	}
@@ -19,6 +21,9 @@ public abstract class Media {
 	}
 	public float getCost() {
 		return cost;
+	}
+	public void freeCost() {
+		this.cost = 0;
 	}
 	public String getDetail() {
 		return id + ". " + "title: " + title + " - " + "category: " + category + "cost: " + cost + " $";
@@ -35,11 +40,48 @@ public abstract class Media {
 		}
 		return false;
 	}
-	public static Media getALuckyItem() {
-		Store item = new Store();
-		int min = 0;
-		int max = nb;
-		int luckyid = (int)Math.floor(Math.random() * (max - min + 1) + min);
-		return item.searchByID(luckyid);
+	public Media(String title) {
+		super();
+		this.title = title;
+		this.id = ++nb;
+		this.dateAdded = LocalDate.now();
+	}
+	public Media(String title, String category, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+		this.id = ++nb;
+		this.dateAdded = LocalDate.now();
+	}
+	public Media(int id) {
+		super();
+		this.id = id;
+		this.dateAdded = LocalDate.now();
+	}
+	public Media(String title, String category, String director, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+		this.id = ++nb;
+		this.dateAdded = LocalDate.now();
+	}
+	public Media(String title, String category, String director, int length, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+		this.id = ++nb;
+		this.dateAdded = LocalDate.now();
+	}
+	public void seeMediaDetail() {
+		for(int i = 0; i < media.size(); i++) {
+			if(media.get(i) instanceof DigitalVideoDisc) {
+				System.out.println(media.get(i).getDetail());
+			}else if(media.get(i) instanceof Book) {
+				System.out.println(media.get(i).getDetail());
+			}
+		}	
 	}
 }
