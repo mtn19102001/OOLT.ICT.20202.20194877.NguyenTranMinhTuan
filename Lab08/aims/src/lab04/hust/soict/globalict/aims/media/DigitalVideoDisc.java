@@ -1,7 +1,7 @@
 package lab04.hust.soict.globalict.aims.media;
 import java.time.LocalDate;
 
-public class DigitalVideoDisc extends Disc implements Playable{
+public class DigitalVideoDisc extends Disc implements Playable, Comparable<DigitalVideoDisc>{
 
 	//construction method
 	//QUESTION: Yes.Java allows to do that.
@@ -31,5 +31,17 @@ public class DigitalVideoDisc extends Disc implements Playable{
 	public void play() {
 		System.out.println("PLaying DVD: " + this.getTitle());
 		System.out.println("DVD length: " + this.getLength());
+	}
+	/*
+	@Override
+	public int compareTo(D o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	*/
+	@Override
+	public int compareTo(DigitalVideoDisc o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

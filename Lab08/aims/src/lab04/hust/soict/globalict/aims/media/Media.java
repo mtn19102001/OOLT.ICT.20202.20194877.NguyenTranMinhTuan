@@ -84,4 +84,13 @@ public abstract class Media {
 			}
 		}	
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Media) {
+			Media item = (Media) obj;
+			return this.id == item.id;
+		}else {
+			return false;
+		}
+	}
 }

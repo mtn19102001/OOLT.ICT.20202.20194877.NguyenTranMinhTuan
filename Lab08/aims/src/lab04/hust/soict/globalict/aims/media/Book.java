@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Book extends Media{
+public class Book extends Media implements Comparable{
 	private static List<String> authors = new ArrayList<String>();
 	private String content;
 	//add author to list
@@ -65,5 +65,10 @@ public class Book extends Media{
 		ret.append("] ");
 		ret.append("[Cost = " + this.cost + "] ");
 		return ret.toString();
+	}
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

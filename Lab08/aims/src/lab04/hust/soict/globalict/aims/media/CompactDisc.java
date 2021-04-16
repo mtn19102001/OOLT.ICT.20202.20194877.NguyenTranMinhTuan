@@ -3,7 +3,7 @@ package lab04.hust.soict.globalict.aims.media;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class CompactDisc extends Disc implements Playable{
+public class CompactDisc extends Disc implements Playable, Comparable<Object>{
 	private ArrayList<Track> tracks = new ArrayList<Track>();
 	private String artist;
 	public String getArtist() {
@@ -39,7 +39,7 @@ public class CompactDisc extends Disc implements Playable{
 	}
 	
 	//Aggregration part
-	public class Track implements Playable{
+	public class Track implements Playable, Comparable{
 		private String title;
 		private int length;
 		public String getTitle() {
@@ -75,5 +75,28 @@ public class CompactDisc extends Disc implements Playable{
 			System.out.println("PLaying DVD: " + this.getTitle());
 			System.out.println("DVD length: " + this.getLength());
 		}
+		@Override
+		public boolean equals(Object obj) {
+			if(obj instanceof Track) {
+				Track track = (Track) obj;
+				if(this.title == track.title && this.length == track.length) {
+					return true;
+				}else {
+					return false;
+				}
+			}else 
+				return false;
+		}
+		@Override
+		public int compareTo(Object o) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
