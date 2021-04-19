@@ -1,8 +1,11 @@
 package lab04.hust.soict.globalict.aims.media;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public abstract class Media {
+public abstract class Media implements Comparable <Media>{
+	public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
+	public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
 	private ArrayList<Media> media= new ArrayList<Media>();
 	protected String title;
 	protected String category;
@@ -93,4 +96,17 @@ public abstract class Media {
 			return false;
 		}
 	}
+	@Override
+	public int compareTo(Media obj) {
+		if(obj instanceof Media) {
+			if((this.getTitle().compareToIgnoreCase(obj.getTitle())) != 0){
+				return this.getTitle().compareToIgnoreCase(obj.getTitle());
+			}else {
+				return this.getCategory().compareToIgnoreCase(obj.getCategory());
+			}
+		}else {
+			return -2;
+		}
+	}
+	//compare title and then category
 }

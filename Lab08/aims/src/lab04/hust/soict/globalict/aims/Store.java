@@ -9,14 +9,17 @@ import lab04.hust.soict.globalict.aims.media.Media;
 public class Store {
 	public ArrayList<Media> itemsInStore = new ArrayList<Media>();
 	public void additem(Media item) {
-		if(this.itemsInStore.add(item) == true) {
-			System.out.println(item.getId() + ". " + item.getTitle().toString() + " has been added to the store");
+		if(this.itemsInStore.contains(item)) {
+			System.out.println(item.getTitle() + " already existed in the store");
+			System.out.println("Cannot add this item to the store!");
 		}else {
-			System.out.println("Cannot add " + item.getTitle() + " to the store");
+			this.itemsInStore.add(item);
+			System.out.println(item.getId() + ". " + item.getTitle().toString() + " has been added to the store");
 		}
 	}
 	public void removeitem(Media item) {
-		if(this.itemsInStore.remove(item) == true) {
+		if(this.itemsInStore.contains(item)) {
+			this.itemsInStore.remove(item);
 			System.out.println(item.getId() + item.getTitle().toString() + " has been removed from the store");
 		}else {
 			System.out.println("Cannot remove " + item.getTitle() + " from the store");

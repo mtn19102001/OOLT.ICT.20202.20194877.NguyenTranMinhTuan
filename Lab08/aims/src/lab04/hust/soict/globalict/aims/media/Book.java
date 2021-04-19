@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Book extends Media implements Comparable{
+public class Book extends Media{
 	private static List<String> authors = new ArrayList<String>();
 	private String content;
 	//add author to list
@@ -16,6 +16,11 @@ public class Book extends Media implements Comparable{
 			System.out.println("The " + authorName + " already existed in the list");
 		}
 	}
+
+	public String getContent() {
+		return content;
+	}
+
 	//remove author from list
 	public void removeAuthors(String authorName) {
 		if(authors.contains(authorName) == true) {
@@ -24,24 +29,27 @@ public class Book extends Media implements Comparable{
 			System.out.println("The " + authorName + " does not exist in the list");
 		}
 	}
-	public Book(String title) {
+	public Book(String title, String content) {
 		super(title);
 		this.id = nb;
+		this.content = content;
 	}
-	public Book(String title, String category, float cost) {
+	public Book(String title, String category, String content, float cost) {
 		super(title, category, cost);
 		this.id = nb;
+		this.content = content;
 	}
 	public Book(int id) {
 		super(id);
 	}
-	public Book(String title, String category, String author, float cost) {
+	public Book(String title, String category, String author, String content, float cost) {
 		super(title, category, author, cost);
+		this.content = content;
 		this.id = nb;
 	}
 	public String getDetail() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		String[] words = content.split("\\W+");
+		String[] words = this.getContent().split("\\W+");
 		for(String w : words) {
 			if(!map.containsKey(w)) {
 				map.put(w, 1);
@@ -65,10 +73,5 @@ public class Book extends Media implements Comparable{
 		ret.append("] ");
 		ret.append("[Cost = " + this.cost + "] ");
 		return ret.toString();
-	}
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

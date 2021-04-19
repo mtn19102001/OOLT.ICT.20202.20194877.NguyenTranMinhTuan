@@ -27,12 +27,15 @@ public class Disc extends Media{
 		this.dateAdded = LocalDate.now();
 	}
 	public Disc(String title, String category, String director, float cost) {
-		super(title, category, director, cost);
+		super(title, category, cost);
+		this.director = director;
 		this.id = nb;
 		this.dateAdded = LocalDate.now();
 	}
 	public Disc(String title, String category, String director, int length, float cost) {
-		super(title, category, director, length, cost);
+		super(title, category, cost);
+		this.director = director;
+		this.length = length;
 		this.id = nb;
 		this.dateAdded = LocalDate.now();
 	}
