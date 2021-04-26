@@ -1,0 +1,11 @@
+1) If toString() has not been overriden yet:
+In this case, the toString() method returns the string representation of the object so
+if I want to output this value I may write, for example, System.out.println(something.toString()).
+Because this statement will output the hashcode values of the objects, if I want to print out the 
+values wanted I have to implement the desired output in the toString() method by overriding it.
+
+2) If toString() has been overriden:
+System.out.println(something.toString()) will output the values wanted.
+
+In the previous exercises, we have to override the equals() method,
+which is used in another method (contains() for example) and for the toString() method, it will be used directly

@@ -2,10 +2,13 @@ package lab04.hust.soict.globalict.aims.media;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class CompactDisc extends Disc implements Playable, Comparable<Object>{
+public class CompactDisc extends Disc implements Playable{
 	private ArrayList<Track> tracks = new ArrayList<Track>();
 	private String artist;
+	public int cdlength = 0;
 	public String getArtist() {
 		return artist;
 	}
@@ -39,7 +42,7 @@ public class CompactDisc extends Disc implements Playable, Comparable<Object>{
 	}
 	
 	//Aggregration part
-	public class Track implements Playable, Comparable{
+	public class Track implements Playable{
 		private String title;
 		private int length;
 		public String getTitle() {
@@ -72,8 +75,8 @@ public class CompactDisc extends Disc implements Playable, Comparable<Object>{
 			}
 		}
 		public void play() {
-			System.out.println("PLaying DVD: " + this.getTitle());
-			System.out.println("DVD length: " + this.getLength());
+			System.out.println("PLaying track: " + this.getTitle());
+			System.out.println("Track length: " + this.getLength());
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -87,16 +90,9 @@ public class CompactDisc extends Disc implements Playable, Comparable<Object>{
 			}else 
 				return false;
 		}
-		@Override
-		public int compareTo(Object o) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
 	}
-
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void addTracktoCD(CompactDisc cd, Track ...track) {
+		List<Track> songs = Arrays.asList(track);
+		cd.tracks.addAll(songs);
 	}
 }

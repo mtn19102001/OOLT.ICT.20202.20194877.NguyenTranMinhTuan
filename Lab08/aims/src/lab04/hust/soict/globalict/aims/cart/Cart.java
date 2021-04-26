@@ -1,14 +1,13 @@
 package lab04.hust.soict.globalict.aims.cart;
 import java.util.ArrayList;
+
 import java.util.Comparator;
 import java.util.Collections;
 import java.util.Arrays;
 import java.util.List;
 
-import lab04.hust.soict.globalict.aims.media.Book;
 import lab04.hust.soict.globalict.aims.media.CompactDisc;
 import lab04.hust.soict.globalict.aims.media.DigitalVideoDisc;
-import lab04.hust.soict.globalict.aims.media.Disc;
 import lab04.hust.soict.globalict.aims.media.Media;
 import lab04.hust.soict.globalict.aims.utils.DVDUtils;
 
@@ -18,10 +17,11 @@ public class Cart {
 	public static float totalCost;
 	public void addMedia(Media item) {
 		if(itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
-			if(this.itemsOrdered.add(item) == true) {
-				System.out.println(item.getId() + ". " + item.getTitle().toString() + " has been added to the cart");
+			if(this.itemsOrdered.contains(item)) {
+				System.out.println(item.getTitle() + " already existed in the cart");
 			}else {
-				System.out.println("Cannot add " + item.getTitle() + " to the cart");
+				this.itemsOrdered.add(item);
+				System.out.println(item.getId() + ". " + item.getTitle().toString() + " has been added to the cart");
 			}
 		}else {
 			System.out.println("The cart is almost full");
@@ -42,7 +42,8 @@ public class Cart {
 		if(itemsOrdered.size() == 0) {
 			System.out.println("Cannot remove " + item.getTitle() + "from the cart");
 		}else {
-			if(this.itemsOrdered.remove(item) == true) {
+			if(this.itemsOrdered.contains(item)) {
+				this.itemsOrdered.remove(item);
 				System.out.println(item.getTitle().toString() + " has been removed");
 			}else {
 				System.out.println("Cannot remove " + item.getTitle() + "from the cart");
@@ -57,36 +58,16 @@ public class Cart {
 		return totalCost;
 	}
 	
-	//alphabet order-> higher to lower cost->longer to shorter length
-	public void sortDisc() {
-		Comparator<Media> MediaSort = new Comparator<Media>() {
-			@Override
-			public int compare(Media item1, Media item2) {
-				int compareByTitle = DVDUtils.compareByTitle(item1, item2);
-				if(compareByTitle == 0) {
-					int compareByCost = DVDUtils.compareByCost(item1, item2);
-					if(compareByCost == 0) {
-						return ((Disc) item2).getLength() - ((Disc) item1).getLength();
-					}
-					return compareByCost;
-				}
-				return compareByTitle;
-			}
-		};
-		Collections.sort(itemsOrdered, MediaSort);
-		for(int i = 0; i < itemsOrdered.size(); i++) {
-			if(itemsOrdered.get(i) instanceof Disc) {
-				Disc dvd = (Disc) itemsOrdered.get(i);
-				System.out.println(dvd.getDetail());
-			}
+	public void sortMediabyTitleCost() {
+		java.util.Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+		for(int i = 0; i < itemsOrdered.size(); i ++) {
+			System.out.println(itemsOrdered.get(i).getDetail());
 		}
 	}
-	public void sortBook() {
-		for(int i = 0; i < itemsOrdered.size(); i++) {
-			if(itemsOrdered.get(i) instanceof Book) {
-				Book book = (Book) itemsOrdered.get(i);
-				System.out.println(book.getDetail());
-			}
+	public void sortMediabyCostTitle() {
+		java.util.Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+		for(int i = 0; i < itemsOrdered.size(); i ++) {
+			System.out.println(itemsOrdered.get(i).getDetail());
 		}
 	}
 	public static void displayCart(DigitalVideoDisc ...disc) {
@@ -127,7 +108,6 @@ public class Cart {
 			}
 		}
 		if(found == 0) {
-			System.out.println("no match is found");
 			return 0;
 		}else {
 			return 1;
