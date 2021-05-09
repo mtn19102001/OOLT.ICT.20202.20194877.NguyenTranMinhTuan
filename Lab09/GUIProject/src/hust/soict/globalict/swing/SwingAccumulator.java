@@ -1,21 +1,21 @@
 package hust.soict.globalict.swing;
 
 import java.awt.Container;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class SwingAccumulator extends Frame{
+public class SwingAccumulator extends JFrame{
 	private JTextField tfInput;
 	private JTextField tfOutput;private int sum = 0;	// Accumulated sum, init to 0
 	
 	//Constructor to setup the GUI components and event handlers
 	public SwingAccumulator() {
-		Container cp = getContentPane();
+		Container cp = this.getContentPane();
 		cp.setLayout(new GridLayout(2, 2));
 		
 		cp.add(new JLabel("Enter an Integer: "));
@@ -33,12 +33,9 @@ public class SwingAccumulator extends Frame{
 		setTitle("Swing Accumulator");
 		setSize(350, 120);
 		setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
-	private Container getContentPane() {
-		return null;
-	}
-
+	
 	public static void main(String[] args) {
 		new SwingAccumulator();
 	}
