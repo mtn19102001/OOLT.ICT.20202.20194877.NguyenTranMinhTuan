@@ -1,0 +1,21 @@
+package hust.soict.globalict.javafx;
+
+
+import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
+
+public class PainterController {
+	@FXML
+	private Pane drawingAreaPane;
+
+	@FXML
+	void drawingAreaMouseDragged(ActionEvent event) {
+
+	}
+	@FXML
+	void clearButtonPressed(ActionEvent event) {
+
+	}
+
+}
+

@@ -1,0 +1,7 @@
+package lab04.hust.soict.globalict.aims.screen;
+
+public class addDigitalVideoDiscToStoreScreen extends addItemToStoreScreen{
+	public addDigitalVideoDiscToStoreScreen() {
+		
+	}
+}

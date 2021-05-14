@@ -1,0 +1,10 @@
+package hust.soict.globalict.swing;
+
+public class NumberGrid {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

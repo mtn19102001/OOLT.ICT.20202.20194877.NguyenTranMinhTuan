@@ -1,0 +1,13 @@
+package hust.soict.globalict.swing;
+
+import java.awt.Frame;
+
+import javax.swing.JFrame;
+
+public class LookAndFeelDemo extends Frame{
+	public LookAndFeelDemo() {
+		addDemoComponents();
+		addLookAndFeelComboBox();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

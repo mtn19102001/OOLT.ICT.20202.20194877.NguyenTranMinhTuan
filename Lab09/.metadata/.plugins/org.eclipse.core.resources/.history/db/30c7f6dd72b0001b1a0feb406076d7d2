@@ -1,0 +1,22 @@
+package hust.soict.globalict.swing;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+
+import javax.swing.JFrame;
+
+public class LookAndFeelDemo extends {
+	public LookAndFeelDemo() {
+		addDemoComponents();
+		addLookAndFeelComboBox();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(380, 100);
+		setVisible(true);
+	}
+	void addDemoComponents() {
+		Container cp = getContentPane();
+		cp.setLayout(new FlowLayout());
+		
+	}
+}

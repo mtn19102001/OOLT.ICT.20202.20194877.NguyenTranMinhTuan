@@ -1,0 +1,6 @@
+package lab04.hust.soict.globalict.aims.screen;
+
+public class addBookToStoreScreen extends addItemToStoreScreen{
+	private Store listOfItem;
+	public addBookToStoreScreen
+}

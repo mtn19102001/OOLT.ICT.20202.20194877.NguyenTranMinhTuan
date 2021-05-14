@@ -1,0 +1,25 @@
+package hust.soict.globalict.javafx;
+
+
+import java.awt.event.MouseEvent;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+
+public class PainterController {
+	@FXML
+	private Pane drawingAreaPane;
+
+	@FXML
+	void drawingAreaMouseDragged(ActionEvent event) {
+
+	}
+	@FXML
+	void clearButtonPressed(MouseEvent event) {
+
+	}
+
+}
+

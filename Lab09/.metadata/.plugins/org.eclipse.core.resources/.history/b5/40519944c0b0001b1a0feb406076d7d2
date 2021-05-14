@@ -1,0 +1,144 @@
+package lab04.hust.soict.globalict.aims.screen;
+
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JTextField;
+
+public class addItemToStoreScreen extends JFrame{
+	JMenuBar createMenuBar() {
+		
+		JMenu menu = new JMenu("Options");
+		
+		JMenu smUpdateStore = new JMenu("Update Store");
+		JMenuItem addBook = new JMenuItem("Add Book");
+		JMenuItem addCD = new JMenuItem("Add CD");
+		JMenuItem addDVD = new JMenuItem("Add DVD");
+		
+		addBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == addBook) {
+					addBookToStoreScreen newWindow = new addBookToStoreScreen(StoreScreen.store);
+				}
+			}
+		});
+		addCD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == addCD) {
+					addCompactDiscToStoreScreen newWindow = new addCompactDiscToStoreScreen();
+				}
+			}
+		});
+		addDVD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == addDVD) {
+					addDigitalVideoDiscToStoreScreen newWindow = new addDigitalVideoDiscToStoreScreen();
+				}
+			}
+		});
+		
+		smUpdateStore.add(addBook);
+		smUpdateStore.add(addCD);
+		smUpdateStore.add(addDVD);
+		
+		menu.add(smUpdateStore);
+		JMenuItem viewStore = new JMenuItem("View Store");
+		JMenuItem viewCart = new JMenuItem("View Cart");
+		menu.add(viewStore);
+		menu.add(viewCart);
+		
+		viewStore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == viewStore) {
+					dispose();
+					StoreScreen newWindow = new StoreScreen(StoreScreen.store);
+				}
+			}
+		});
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
+		menuBar.add(menu);
+		
+		return menuBar;
+	}
+	  JLabel label1 = new JLabel("Title");
+
+	  JLabel label2 = new JLabel("Category");
+
+	  JLabel label3 = new JLabel("Director");
+
+	  JLabel label4 = new JLabel("Cost");
+
+	  JTextField titleField = new JTextField();
+
+	  JTextField categoryField = new JTextField();
+
+	  JTextField directorField = new JTextField();
+
+	  JTextField costField = new JTextField();
+
+	  String[] address = new String[4];
+
+	  public AddressDialog(Frame owner, boolean modal) {
+	    super(owner, modal);
+	    init();
+	  }
+
+	  private void init() {
+	    this.setTitle("Address Dialog");
+	    this.setLayout(new GridLayout(4, 2));
+	    this.add(label1);
+	    this.add(titleField);
+	    this.add(label2);
+	    this.add(categoryField);
+	    this.add(label3);
+	    this.add(directorField);
+	    this.add(label4);
+	    this.add(costField);
+	  }
+
+	  public String[] getInfo() {
+	    address[0] = titleField.getText();
+	    address[1] = categoryField.getText();
+	    address[2] = directorField.getText();
+	    address[3] = costField.getText();
+	    return address;
+	  }
+	}
+
+	public class Main extends JFrame {
+	  AddressDialog dialog = new AddressDialog(this, false);
+
+	  public Main() {
+	    super();
+
+	    this.getContentPane().setLayout(new FlowLayout());
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    final AddressDialog dialog = new AddressDialog(this, false);
+	    JButton button = new JButton("Show Dialog");
+	    button.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent ae) {
+	        dialog.setSize(250, 120);
+	        dialog.setVisible(true);
+	      }
+	    });
+	    this.getContentPane().add(button);
+	  }
+
+	  public static void main(String[] args) {
+	    Main frame = new Main();
+	    frame.pack();
+	    frame.setVisible(true);
+	  }
+	}
+}
