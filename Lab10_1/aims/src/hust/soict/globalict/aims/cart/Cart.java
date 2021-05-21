@@ -1,5 +1,8 @@
 package hust.soict.globalict.aims.cart;
 
+import javax.naming.LimitExceededException;
+
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
@@ -33,12 +36,14 @@ public class Cart {
 	public FloatProperty getTotalCost() {
 		return totalCost;
 	}
-	public int addMedia(Media media) {
+	
+	public int addMedia(Media media) throws LimitExceededException{
 		if(media == null) {
 			return -1;
 		}
 		if(this.getItemsOrdered().size() + 1 > MAX_NUMBERS_ORDERED) {
-			return -2;
+			throw new LimitExceededException
+			("Error : The number of media has reached its limit");
 		}
 		if(this.getItemsOrdered().contains(media)) {
 			return 0;
@@ -47,9 +52,9 @@ public class Cart {
 		calculateTotalCost();
 		return 1;
 	}
-	public void removeMedia(Media item){
+	public void removeMedia(Media item) throws Exception{
 		if(this.getItemsOrdered().size() == 0) {
-			System.out.println("Cannot remove " + item.getTitle() + "from the cart");
+			throw new Exception("Cannot remove this item from the cart");
 		}else {
 			if(this.getItemsOrdered().contains(item)) {
 				this.itemsOrdered.remove(item);
@@ -116,7 +121,7 @@ public class Cart {
 		itemsOrdered.get(luckyID).freeCost();
 		return itemsOrdered.get(luckyID);
 	}
-	public void play(int id) {
+	public void play(int id) throws PlayerException {
 		if(searchByID(id) == 1) {
 			if(itemsOrdered.get(id) instanceof DigitalVideoDisc) {
 				DigitalVideoDisc dvd = (DigitalVideoDisc) itemsOrdered.get(id);

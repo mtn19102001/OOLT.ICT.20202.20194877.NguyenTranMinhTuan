@@ -2,6 +2,7 @@ package hust.soict.globalict.aims;
 
 import java.util.ArrayList;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
@@ -44,7 +45,7 @@ public class Store {
 			System.out.println("Cannot remove " + item.getTitle() + " from the store");
 		}
 	}
-	public void play(int i) {
+	public void play(int i) throws PlayerException {
 		if(itemsInStore.get(i) instanceof DigitalVideoDisc) {
 			DigitalVideoDisc dvd = (DigitalVideoDisc) itemsInStore.get(i);
 			dvd.play();

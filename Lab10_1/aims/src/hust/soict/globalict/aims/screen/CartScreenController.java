@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
 import javafx.event.ActionEvent;
@@ -99,12 +100,12 @@ public class CartScreenController extends JFrame{
 		}
 	}
 	@FXML
-	void btnRemovePressed(ActionEvent event) {
+	void btnRemovePressed(ActionEvent event) throws Exception {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
 		cart.removeMedia(media);
 	}
 	@FXML
-	void btnPlayPressed(ActionEvent event){
+	void btnPlayPressed(ActionEvent event) throws PlayerException{
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
 		cart.play(media.getId());
 	}

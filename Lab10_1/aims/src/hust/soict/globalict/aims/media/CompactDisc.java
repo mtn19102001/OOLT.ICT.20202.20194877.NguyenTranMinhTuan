@@ -3,7 +3,10 @@ package hust.soict.globalict.aims.media;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+
+import hust.soict.globalict.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable{
 	private ArrayList<Track> tracks = new ArrayList<Track>();
@@ -34,11 +37,25 @@ public class CompactDisc extends Disc implements Playable{
 		}
 		return CDlength;
 	}
-	public void play() {
-		for(int i = 0; i < tracks.size(); i++) {
-			tracks.get(i).play();
+	public void play() throws PlayerException{
+		if(this.getLength() > 0) {
+			for(int i = 0; i < tracks.size(); i++) {
+				tracks.get(i).play();
+			}
+			System.out.println("The CD has " + tracks.size() + " track(s)" + " with a total of " + getCDlength() + " minute(s)");
+			Iterator<Track> iter = tracks.iterator();
+			Track nextTrack;
+			while(iter.hasNext()) {
+				nextTrack = (Track) iter.next();
+				try {
+					nextTrack.play();
+				}catch (PlayerException e) {
+					throw e;
+				}
+			}
+		}else {
+			throw new PlayerException("Error: CD length is non-positive!");
 		}
-		System.out.println("The CD has " + tracks.size() + " track(s)" + " with a total of " + getCDlength() + " minute(s)");
 	}
 	
 	//Aggregration part
@@ -74,9 +91,13 @@ public class CompactDisc extends Disc implements Playable{
 				return true;
 			}
 		}
-		public void play() {
-			System.out.println("PLaying track: " + this.getTitle());
-			System.out.println("Track length: " + this.getLength());
+		public void play() throws PlayerException{
+			if(this.getLength() > 0) {
+				System.out.println("PLaying track: " + this.getTitle());
+				System.out.println("Track length: " + this.getLength());
+			}else {
+				throw new PlayerException("Error : track length is non-positive");
+			}
 		}
 		@Override
 		public boolean equals(Object obj) {

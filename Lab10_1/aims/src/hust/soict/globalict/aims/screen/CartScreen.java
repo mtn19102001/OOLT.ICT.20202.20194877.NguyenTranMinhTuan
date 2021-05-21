@@ -2,6 +2,7 @@ package hust.soict.globalict.aims.screen;
 
 import java.io.IOException;
 
+import javax.naming.LimitExceededException;
 import javax.swing.JFrame;
 
 import hust.soict.globalict.aims.cart.Cart;
@@ -48,7 +49,7 @@ public class CartScreen extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public static void main(String args[]) {
+	public static void main(String args[]) throws LimitExceededException {
 		Media dvd1 = new DigitalVideoDisc("The Lion King",
 				"Animation", "Roger Allers", 87, 19.95f);
 		Media dvd2 = new DigitalVideoDisc("Star Wars",

@@ -1,6 +1,8 @@
 package hust.soict.globalict.aims.media;
 import java.time.LocalDate;
 
+import hust.soict.globalict.aims.exception.PlayerException;
+
 public class DigitalVideoDisc extends Disc implements Playable{
 	//construction method
 	//QUESTION: Yes.Java allows to do that.
@@ -27,8 +29,12 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		this.id = nb;
 		this.dateAdded = LocalDate.now();
 	}
-	public void play() {
-		System.out.println("PLaying DVD: " + super.getTitle());
-		System.out.println("DVD length: " + super.getLength());
+	public void play() throws PlayerException{
+		if(this.getLength() > 0) {
+			System.out.println("PLaying DVD: " + super.getTitle());
+			System.out.println("DVD length: " + super.getLength());
+		}else {
+			throw new PlayerException("Error: DVD length is non-positive!");
+		}
 	}
 }

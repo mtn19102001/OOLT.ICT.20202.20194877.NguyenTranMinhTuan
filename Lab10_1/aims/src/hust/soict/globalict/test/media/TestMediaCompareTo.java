@@ -2,6 +2,7 @@ package hust.soict.globalict.test.media;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
@@ -9,7 +10,7 @@ import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.CompactDisc.Track;
 
 public class TestMediaCompareTo {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws PlayerException {
 		ArrayList <Media> collection = new ArrayList<Media>();
 		Media dvd1 = new DigitalVideoDisc("The Lion King",
 				"Animation", "Roger Allers", 80, 19.95f);

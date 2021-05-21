@@ -2,15 +2,12 @@ package hust.soict.globalict.aims.screen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -27,7 +24,6 @@ import javax.swing.JPanel;
 import hust.soict.globalict.aims.Store;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
-import hust.soict.globalict.aims.screen.StoreScreen.MediaStore;
 
 
 public class addItemToStoreScreen extends JFrame{

@@ -22,11 +22,11 @@ public class Book extends Media{
 	}
 
 	//remove author from list
-	public void removeAuthors(String authorName) {
+	public void removeAuthors(String authorName) throws Exception {
 		if(authors.contains(authorName) == true) {
 			authors.remove(authorName);
 		}else {
-			System.out.println("The " + authorName + " does not exist in the list");
+			throw new Exception("The author name does not exist in the list");
 		}
 	}
 	public Book(String title, String content) {

@@ -1,5 +1,6 @@
 package hust.soict.globalict.aims;
 import java.util.Scanner;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -9,7 +10,7 @@ import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 public class Aims {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		JFrame frame = new JFrame();
 		Store listofitem = new Store();
 		Cart anOrder = new Cart();
