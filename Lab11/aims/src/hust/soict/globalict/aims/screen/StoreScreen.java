@@ -1,0 +1,244 @@
+package hust.soict.globalict.aims.screen;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import hust.soict.globalict.aims.Store;
+import hust.soict.globalict.aims.media.*;
+
+public class StoreScreen extends JFrame{
+	protected static Store store;
+	
+	JPanel createNorth() {
+		JPanel north = new JPanel();
+		north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
+		north.add(createMenuBar());
+		north.add(createHeader());
+		return north;
+	}
+	JMenuBar createMenuBar() {
+		
+		JMenu menu = new JMenu("Options");
+		
+		JMenu smUpdateStore = new JMenu("Update Store");
+		JMenuItem addBook = new JMenuItem("Add Book");
+		JMenuItem addCD = new JMenuItem("Add CD");
+		JMenuItem addDVD = new JMenuItem("Add DVD");
+		
+		addBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == addBook) {
+					String info[] = {"title", "category", "author", "content", "cost"};
+					String mediainfo[] = new String[5];
+					for(int i = 0; i < info.length; i++) {
+						mediainfo[i] = JOptionPane.showInputDialog("Enter " + info[i]);
+					}
+					Media newBook = new Book(mediainfo[0], mediainfo[1],
+							mediainfo[2], mediainfo[3], Float.parseFloat(mediainfo[4]));
+					store.additem(newBook);
+					addBookToStoreScreen newWindow = new addBookToStoreScreen(StoreScreen.store);
+				}
+			}
+		});
+		addCD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == addCD) {
+					String info[] = {"title", "category", "director", "artist", "length", "cost"};
+					String cdinfo[] = new String[6];
+					for(int i = 0; i < info.length; i++) {
+						cdinfo[i] = JOptionPane.showInputDialog("Enter " + info[i]);
+					}
+					Media newcd = new CompactDisc(cdinfo[0], cdinfo[1],
+							cdinfo[2], cdinfo[3], Integer.parseInt(cdinfo[4]), Float.parseFloat(cdinfo[5]));
+					store.additem(newcd);
+					addCompactDiscToStoreScreen newWindow = new addCompactDiscToStoreScreen(StoreScreen.store);
+				}
+			}
+		});
+		addDVD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == addDVD) {
+					String info[] = {"title", "category", "director", "length", "cost"};
+					String dvdinfo[] = new String[5];
+					for(int i = 0; i < info.length; i++) {
+						dvdinfo[i] = JOptionPane.showInputDialog("Enter " + info[i]);
+					}
+					Media newdvd = new DigitalVideoDisc(dvdinfo[0], dvdinfo[1],
+							dvdinfo[2], Integer.parseInt(dvdinfo[3]), Float.parseFloat(dvdinfo[4]));
+					store.additem(newdvd);
+					addDigitalVideoDiscToStoreScreen newWindow = new addDigitalVideoDiscToStoreScreen(StoreScreen.store);
+				}
+			}
+		});
+		
+		smUpdateStore.add(addBook);
+		smUpdateStore.add(addCD);
+		smUpdateStore.add(addDVD);
+		
+		menu.add(smUpdateStore);
+		menu.add(new JMenuItem("View store"));
+		menu.add(new JMenuItem("View cart"));
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
+		menuBar.add(menu);
+		
+		return menuBar;
+	}
+	JPanel createHeader() {
+		
+		JPanel header = new JPanel();
+		header.setLayout(new BoxLayout(header, BoxLayout.X_AXIS));
+		
+		JLabel title = new JLabel("Aims");
+		title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 50));
+		title.setForeground(Color.CYAN);
+		
+		JButton cart = new JButton("View cart");
+		cart.setPreferredSize(new Dimension(100, 50));
+		cart.setMaximumSize(new Dimension(100, 50));
+		
+		header.add(Box.createRigidArea(new Dimension(10, 10)));
+		header.add(title);
+		header.add(Box.createHorizontalGlue());
+		header.add(cart);
+		header.add(Box.createRigidArea(new Dimension(10, 10)));
+		
+		return header;
+	}
+	JPanel createCenter() {
+		JPanel center = new JPanel();
+		center.setLayout(new GridLayout(3, 3, 2, 2));
+		
+		ArrayList<Media> mediaInStore = store.getItemInStore();
+		for(int i = 0; i < mediaInStore.size(); i ++) {
+			MediaStore cell = new MediaStore(mediaInStore.get(i));
+			center.add(cell);
+		}
+		return center;
+	}
+	public class MediaStore extends JPanel{
+		public MediaStore(Media media) {
+			
+			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+			
+			JLabel title = new JLabel(media.getTitle());
+			title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 20));
+			title.setAlignmentX(CENTER_ALIGNMENT);
+			
+			JLabel cost = new JLabel("" + media.getCost() + " $");
+			cost.setAlignmentX(CENTER_ALIGNMENT);
+			
+			JPanel container = new JPanel();
+			container.setLayout(new FlowLayout(FlowLayout.CENTER));
+			
+			JButton addToCart = new JButton("Add to cart");
+			addToCart.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(e.getSource() == addToCart) {
+						JFrame frame = new JFrame();
+						JOptionPane.showMessageDialog(frame,
+						    media.getTitle() + " is added successfully",
+						    "Add media",
+						    JOptionPane.INFORMATION_MESSAGE
+						);
+					}
+				}
+			});
+			container.add(addToCart);
+			if(media instanceof Playable) {
+				JButton play = new JButton("Play");
+				play.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						if(e.getSource() == play) {
+							JFrame frame = new JFrame();
+							JOptionPane.showMessageDialog(frame,
+							    media.getTitle() + " is playing",
+							    "Play media",
+							    JOptionPane.INFORMATION_MESSAGE
+							);
+						}
+					}
+				});
+				container.add(play);
+			}
+			
+			this.add(Box.createVerticalGlue());
+			this.add(title);
+			this.add(cost);
+			this.add(Box.createVerticalGlue());
+			this.add(container);
+			
+			this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		}
+	}
+	public StoreScreen(Store store) {
+		StoreScreen.store = store;
+		Container cp = getContentPane();
+		cp.setLayout(new BorderLayout());
+		
+		cp.add(createNorth(), BorderLayout.NORTH);
+		cp.add(createCenter(), BorderLayout.CENTER);
+		
+		setVisible(true);
+		setTitle("Store");
+		setSize(1024, 768);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public static void main(String[] args) {
+		Store listOfItem = new Store();
+		Media dvd1 = new DigitalVideoDisc("The Lion King",
+				"Animation", "Roger Allers", 87, 19.95f);
+		Media dvd2 = new DigitalVideoDisc("Star Wars",
+				"Science Fiction", "George Lucas", 87, 24.95f);
+		Media dvd3 = new DigitalVideoDisc("Hercules",
+				"Animation", "Ron Clements", 10.99f);
+		String title1 = "Romeo and Juliet";
+		String title2 = "Hamlet";
+		String title3 = "A brief history of time";
+		String content1 = "his her her his their them they";
+		String content2 = "I you her his they she her him";
+		String content3 = "I you we they he she it her him it I";
+		String name1 = "William Shakespeare";
+		Book.addAuthors(name1);
+		Media book1 = new Book(title1, "Fiction", name1, content1, 39.82f);
+		Media book2 = new Book(title2, "Fiction", name1, content2, 49.98f);
+		String name2 = "Stephen Hawking";
+		Book.addAuthors(name2);
+		Media book3 = new Book(title3, "Fiction", name2, content3, 59.09f);
+		Media cd1 = new CompactDisc("Meteora", "Rock", "CORP", "Linking Park",48, 49.95f);
+		Media cd2 = new CompactDisc("Hybrid Theory", "Rock", "MSC", "Linking Park",50, 39.03f);
+		Media cd3 = new CompactDisc("Thriller", "Pop, Disco, Funk", "Epic", "Micheal Jackson",28, 59.84f);
+		
+		listOfItem.additem(dvd1);
+		listOfItem.additem(dvd2);
+		listOfItem.additem(dvd3);
+		listOfItem.additem(book1);
+		listOfItem.additem(book2);
+		listOfItem.additem(book3);
+		listOfItem.additem(cd1);
+		listOfItem.additem(cd2);
+		listOfItem.additem(cd3);
+		new StoreScreen(listOfItem);
+	}
+}
